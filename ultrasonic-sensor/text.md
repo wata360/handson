@@ -142,18 +142,18 @@ SORACOMではSIMの登録や「使用開始」「休止」「解約」といっ�
 ### Raspberry Piへの接続とセットアップ
 
 
- ***
+```
 割り当てられたRaspberryPiと、そのIPアドレスをご確認ください。
 使用する Raspberry Pi のアドレスは、 192.168.123.(100+ドングルの番号) です
 
 例: ５番のドングルであれば、 192.168.123.105
 
-***
+```
 
 PCからRaspberry Piに接続(SSH)します。
 PCのターミナルを立ち上げ、以下のコマンドを実行してください。
 
-****
+```
 ~$ ssh pi@192.168.123.xxx (割り当てられたIPアドレスを指定してください)
 The authenticity of host '192.168.123.xxx (192.168.123.xxx)' can't be established.
 ECDSA key fingerprint is db:ed:1b:37:f2:98:c6:f4:d8:6d:cf:5c:31:6a:16:58.
@@ -170,7 +170,7 @@ permitted by applicable law.
 Last login: Thu Sep 24 15:51:43 2015 from 192.168.123.254
 pi@raspberrypi ~ $
 
-*****
+```
 
 
 
@@ -208,16 +208,16 @@ USBドングルを使用するために、以下のパッケージをインス�
 
 ###### usb-modeswitchとwvdialのインストールコマンド
 
-***
+```
 pi@raspberrypi:~ $ sudo apt-get install -y usb-modeswitch wvdial
-***
+```
 
-****
+```
  	パッケージのインストール中、
   Sorry.  You can retry the autodetection at any time by running "wvdialconf".
      (Or you can create /etc/wvdial.conf yourself.)
 と表示されますが、設定ファイル /etc/wvdial.conf は後ほど実行するスクリプトが自動生成しますので、問題ありません。
-****
+```
 
 ###  <a name = "section3−3">3.	接続スクリプトのダウンロード
 
@@ -226,7 +226,7 @@ https://gist.github.com/j3tm0t0/65367f971c3d770557f3
 
 以下のコマンドを実行し、このスクリプトをダウンロードし、接続用シェルスクリプトを作成します。
 
-****
+```
 pi@raspberrypi:~ $ curl -O http://soracom-files.s3.amazonaws.com/connect_air.sh
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
@@ -234,7 +234,7 @@ pi@raspberrypi:~ $ curl -O http://soracom-files.s3.amazonaws.com/connect_air.sh
 pi@raspberrypi ~ $ chmod +x connect_air.sh<br>
 pi@raspberrypi ~ $ sudo mv connect_air.sh /usr/local/sbin/
 
-****
+```
 
 ### <a name = "section3−4">4.	Air SIM を使って、インターネットに接続する
 
