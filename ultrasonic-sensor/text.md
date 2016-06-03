@@ -142,40 +142,38 @@ SORACOMではSIMの登録や「使用開始」「休止」「解約」といっ�
 ### Raspberry Piへの接続とセットアップ
 
 
- ***
+ ```
 割り当てられたRaspberryPiと、そのIPアドレスをご確認ください。
 使用する Raspberry Pi のアドレスは、 192.168.123.(100+ドングルの番号) です
 
 例: ５番のドングルであれば、 192.168.123.105
 
-***
+```
 
 PCからRaspberry Piに接続(SSH)します。
 PCのターミナルを立ち上げ、以下のコマンドを実行してください。
 
-****
-~$ ssh pi@192.168.123.xxx (割り当てられたIPアドレスを指定してください)
-The authenticity of host '192.168.123.xxx (192.168.123.xxx)' can't be established.
-ECDSA key fingerprint is db:ed:1b:37:f2:98:c6:f4:d8:6d:cf:5c:31:6a:16:58.
-Are you sure you want to continue connecting (yes/no)? yes
-Warning: Permanently added '192.168.123.xxx' (ECDSA) to the list of known hosts.
-pi@192.168.123.3's password: (raspberry と入力)
+```
+~$ ssh pi@192.168.123.xxx (割り当てられたIPアドレスを指定してください)<br>
+The authenticity of host '192.168.123.xxx (192.168.123.xxx)' can't be established.<br>
+ECDSA key fingerprint is db:ed:1b:37:f2:98:c6:f4:d8:6d:cf:5c:31:6a:16:58.<br>
+Are you sure you want to continue connecting (yes/no)? yes<br>
+Warning: Permanently added '192.168.123.xxx' (ECDSA) to the list of known hosts.<br>
+pi@192.168.123.3's password: (raspberry と入力)<br>
 
-The programs included with the Debian GNU/Linux system are free software;
-the exact distribution terms for each program are described in the
-individual files in /usr/share/doc/*/copyright.
+The programs included with the Debian GNU/Linux system are free software;<br>
+the exact distribution terms for each program are described in the<br>
+individual files in /usr/share/doc/*/copyright.<br>
 
-Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
-permitted by applicable law.
-Last login: Thu Sep 24 15:51:43 2015 from 192.168.123.254
-pi@raspberrypi ~ $
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent<br>
+permitted by applicable law.<br>
+Last login: Thu Sep 24 15:51:43 2015 from 192.168.123.254<br>
+pi@raspberrypi ~ $<br>
 
-*****
-
-
+```
 
 
- 
+
 
 ## <a name="section3">3章 Air SIMを使って、インターネットに接続する
 ここでは、先ほど登録したSORACOM AirのSIM (以降、Air SIM)を使用して、Raspberry Piからインターネットに接続します。
@@ -208,16 +206,16 @@ USBドングルを使用するために、以下のパッケージをインス�
 
 ###### usb-modeswitchとwvdialのインストールコマンド
 
-***
+```
 pi@raspberrypi:~ $ sudo apt-get install -y usb-modeswitch wvdial
-***
+```
 
-****
+```
  	パッケージのインストール中、
   Sorry.  You can retry the autodetection at any time by running "wvdialconf".
      (Or you can create /etc/wvdial.conf yourself.)
 と表示されますが、設定ファイル /etc/wvdial.conf は後ほど実行するスクリプトが自動生成しますので、問題ありません。
-****
+```
 
 ###  <a name = "section3−3">3.	接続スクリプトのダウンロード
 
@@ -226,21 +224,21 @@ https://gist.github.com/j3tm0t0/65367f971c3d770557f3
 
 以下のコマンドを実行し、このスクリプトをダウンロードし、接続用シェルスクリプトを作成します。
 
-****
-pi@raspberrypi:~ $ curl -O http://soracom-files.s3.amazonaws.com/connect_air.sh
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
+```
+pi@raspberrypi:~ $ curl -O http://soracom-files.s3.amazonaws.com/connect_air.sh<br>
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current<br>
+                                 Dload  Upload   Total   Spent    Left  Speed<br>
 100  1420  100  1420    0     0   2416      0 --:--:-- --:--:-- --:--:--  2414<br>
 pi@raspberrypi ~ $ chmod +x connect_air.sh<br>
-pi@raspberrypi ~ $ sudo mv connect_air.sh /usr/local/sbin/
+pi@raspberrypi ~ $ sudo mv connect_air.sh /usr/local/sbin/<br>
 
-****
+```
 
 ### <a name = "section3−4">4.	Air SIM を使って、インターネットに接続する
 
 接続の準備ができましたので、接続スクリプトを実行します。接続スクリプトは root 権限で実行する必要があるため、sudoで実行します。
 
-****
+```
 pi@raspberrypi:~ $ sudo /usr/local/sbin/connect_air.sh<br>
 Bus 001 Device 004: ID 1c9e:98ff OMEGA TECHNOLOGY<br>
 Look for target devices ...<br>
@@ -252,8 +250,9 @@ Access device 004 on bus 001<br>
 Current configuration number is 1<br>
 Use interface number 0<br>
 Use endpoints 0x01 (out) and 0x81 (in)<br>
-****
+```
 
+```
 USB description data (for identification)
 
 -------------------------
@@ -264,45 +263,45 @@ Product: USB Modem
  Serial No.: 1234567890ABCDEF
 
 -------------------------
-Looking for active driver ...
- OK, driver detached
-Set up interface 0
-Use endpoint 0x01 for message sending ...
-Trying to send message 1 to endpoint 0x01 ...
- OK, message successfully sent
-Reset response endpoint 0x81
-Reset message endpoint 0x01
--> Run lsusb to note any changes. Bye!
+Looking for active driver ...<br>
+ OK, driver detached<br>
+Set up interface 0<br>
+Use endpoint 0x01 for message sending ...<br>
+Trying to send message 1 to endpoint 0x01 ...<br>
+ OK, message successfully sent<br>
+Reset response endpoint 0x81<br>
+Reset message endpoint 0x01<br>
+-> Run lsusb to note any changes. Bye!<br>
 
-insmod /lib/modules/4.1.19-v7+/kernel/drivers/usb/serial/usb_wwan.ko
-insmod /lib/modules/4.1.19-v7+/kernel/drivers/usb/serial/option.ko
-waiting for modem device
-.--> WvDial: Internet dialer version 1.61
---> Cannot get information for serial port.
---> Initializing modem.
---> Sending: ATZ
-ATZ
-OK
---> Sending: ATQ0 V1 E1 S0=0 &C1 &D2 +FCLASS=0
-ATQ0 V1 E1 S0=0 &C1 &D2 +FCLASS=0
-OK
---> Sending: AT+CGDCONT=1,"IP","soracom.io"
-AT+CGDCONT=1,"IP","soracom.io"
-OK
---> Modem initialized.
---> Sending: ATD*99***1#
-
---> Waiting for carrier.
-ATD*99***1#
-CONNECT 14400000
---> Carrier detected.  Starting PPP immediately.
---> Starting pppd at Tue Apr 26 04:42:50 2016
---> Pid of pppd: 2395
---> Using interface ppp0
---> pppd: ���v�r[01]�r[01]
---> pppd: ���v�r[01]�r[01]
---> pppd: ���v�r[01]�r[01]
---> pppd: ���v�r[01]�r[01]
+insmod /lib/modules/4.1.19-v7+/kernel/drivers/usb/serial/usb_wwan.ko<br>
+insmod /lib/modules/4.1.19-v7+/kernel/drivers/usb/serial/option.ko<br>
+waiting for modem device<br>
+.--> WvDial: Internet dialer version 1.61<br>
+--> Cannot get information for serial port.<br>
+--> Initializing modem.<br>
+--> Sending: ATZ<br>
+ATZ<br>
+OK<br>
+--> Sending: ATQ0 V1 E1 S0=0 &C1 &D2 +FCLASS=0<br>
+ATQ0 V1 E1 S0=0 &C1 &D2 +FCLASS=0<br>
+OK<br>
+--> Sending: AT+CGDCONT=1,"IP","soracom.io"<br>
+AT+CGDCONT=1,"IP","soracom.io"<br>
+OK<br>
+--> Modem initialized.<br>
+--> Sending: ATD*99***1#<br>
+<br>
+--> Waiting for carrier.<br>
+ATD*99***1#<br>
+CONNECT 14400000<br>
+--> Carrier detected.  Starting PPP immediately.<br>
+--> Starting pppd at Tue Apr 26 04:42:50 2016<br>
+--> Pid of pppd: 2395<br>
+--> Using interface ppp0<br>
+--> pppd: ���v�r[01]�r[01]<br>
+--> pppd: ���v�r[01]�r[01]<br>
+--> pppd: ���v�r[01]�r[01]<br>
+--> pppd: ���v�r[01]�r[01]<br>
 --> pppd: ���v�r[01]�r[01]
 --> pppd: ���v�r[01]�r[01]
 --> local  IP address 10.xxx.xxx.xxx
@@ -313,18 +312,19 @@ CONNECT 14400000
 --> pppd: ���v�r[01]�r[01]
 --> secondary DNS address 100.127.1.53
 --> pppd: ���v�r[01]�r[01]
-
+```
 
 上記のように表示されると接続完了です。
 
 AWS を経由してインターネット接続できていることを確認します。
 別のターミナルを立ち上げ、以下のコマンドを実行します。
 
-pi@raspberrypi ~ $ curl ifconfig.io
-54.65.XXX.XXX  (IPアドレスが表示されます)
-pi@raspberrypi ~ $ host 54.65.xxx.xxx
-xxx.xxx.65.54.in-addr.arpa domain name pointer ec2-54-65-xx-xxx.ap-northeast-1.compute.amazonaws.com.
-
+```
+pi@raspberrypi ~ $ curl ifconfig.io<br>
+54.65.XXX.XXX  (IPアドレスが表示されます)<br>
+pi@raspberrypi ~ $ host 54.65.xxx.xxx<br>
+xxx.xxx.65.54.in-addr.arpa domain name pointer ec2-54-65-xx-xxx.ap-northeast-1.compute.amazonaws.com.<br>
+```
 CurlコマンドによるIPアドレスとhostコマンドにより、EC2からインターネットに接続されていることがわかりました。
 
 
@@ -367,14 +367,14 @@ CurlコマンドによるIPアドレスとhostコマンドにより、EC2から�
 また、画面下部にある [データ使用量実績データを CSV 形式でダウンロード] から、期間を選択して [ダウンロード] ボタンをクリックすることで、基本料金、転送データ量などの詳細を確認することができます。
 
 
-
+```
  	請求額詳細のCSVには、IMSIごとに以下の項目が記載されています。
 ✓	date (日付)
 ✓	billItemName (basicCharge は基本料金、upload/downloadDataChargeは転送データ量に対する課金)
 ✓	quantity (数量: upload/downloadDataChargeの場合の単位はバイト)
 ✓	amount (金額: 日ごとの料金。この項目の総合計が、月額請求額となります)
 ✓	タグ、グループ
-
+```
 
 #### <a name = "section4-4">監視機能の確認
 通信量にしきい値を設定し、超えた場合にメールでの通知と通信帯域制限をすることができます。監視できる項目は以下のとおりです。
@@ -397,13 +397,18 @@ Air SIMに監視の設定をしましょう。当ハンズオンの間に通知�
 
 ここでの設定は、対象のAir SIMごとに有効になります。
 
+```
  	監視の設定は、以下の3つを対象することができます。
 ✓	Air SIM<br>
 ✓	(Air SIMの所属する)グループ<br>
 ✓	(登録した)全てのSIM
+```
 
 すぐに、メール通知を確認したい場合は、Raspberry Piから以下のコマンドを実行して、1MiBのダウンロードを実施してみてください。
+
+```
 pi@raspberrypi ~ $ wget http://soracom-files.s3.amazonaws.com/1MB
+```
 
 以下のような通知が届きます。(通知は最大で5分程度かかります。)
 
@@ -460,7 +465,7 @@ pi@raspberrypi ~ $ wget http://soracom-files.s3.amazonaws.com/1MB
 #### <a name = "section5-3">3.センサーをテストしてみる
 以下のコマンドで、プログラムをダウンロード・実行し、正しくセンサー値が読み出せるか試しましょう
 
-****
+```
 pi@raspberrypi ~ $ wget http://soracom-files.s3.amazonaws.com/sensor_test.py
 --2016-03-23 18:07:17--  http://soracom-files.s3.amazonaws.com/sensor_test.py<br>
 Resolving soracom-files.s3.amazonaws.com (soracom-files.s3.amazonaws.com)... 54.231.225.133<br>
@@ -478,6 +483,7 @@ distance: 38.6 cm<br>
 distance: 38.9 cm<br>
 distance: 2.3 cm  ← センサーの前に手をかざして変化を確認しましょう
      :
+     ```
 
 #### <a name = "section5-4">4.トラブルシュート
 
@@ -551,9 +557,11 @@ ESへのデータ転送は[Webエントリポイント]を使用します。[SOR
 
 表示された画面で以下のように設定してください。
 
+```
 ●	設定名：ES(別の名前でも構いません)<br>
 ●	転送先のプロトコル：HTTPS<br>
 ●	ホスト名： search-handson-z3uroa6oh3aky2j3juhpot5evq.ap-northeast-1.es.amazonaws.com
+```
 
 ![](image/6-9.png)
 
@@ -587,7 +595,7 @@ ESへのデータ転送は[Webエントリポイント]を使用します。[SOR
 
 Beamを使用する(「send_to_cloud.py」の実行時)には、SORACOM Airで通信している必要があります。
 
-****
+````
 pi@raspberrypi:~ $ sudo apt-get install -y python-pip<br>
   :<br>
 pi@raspberrypi ~ $ sudo pip install elasticsearch<br>
@@ -617,7 +625,7 @@ pi@raspberrypi ~ $ python send_to_cloud.py
 - ステータスが 'in'(何か物体がある) に変化しました
 - Beam 経由でデータを送信します
 
-****
+
 {u'_type': u'event', u'_id': u'AVRRGrS4IfRhQRmTbOsN', u'created': True, u'_version': 1, u'_index': u'sensor'} ← 正常にデータが送信されたら created: True  になります
 
 
@@ -629,12 +637,13 @@ pi@raspberrypi ~ $ python send_to_cloud.py
 
 - Beam 経由でデータを送信します
 {u'_type': u'event', u'_id': u'AVRRGsWEIfRhQRmTbOsO', u'created': True, u'_version': 1, u'_index': u'sensor'} ← 正常にデータが送信されたら created: True  になります
-****
+```
 
 
  
 
 #### <a name = "section6-8">4.	クラウド上でデータを確認する
+
 Elasticsearch Service 上にインストールされている Kibana にアクセスします。
 https://search-handson-z3uroa6oh3aky2j3juhpot5evq.ap-northeast-1.es.amazonaws.com/_plugin/kibana/
 
@@ -738,7 +747,7 @@ IFTTTへの送信をおこないます。
 
 ESの場合と同様に、Beamを使用する(「send_to_ifttt.py」の実行時)には、SORACOM Airで通信している必要があります。
 
-
+```
 pi@raspberrypi ~ $ wget http://soracom-files.s3.amazonaws.com/send_to_ifttt.py
 --2016-03-24 03:24:30--  http://soracom-files.s3.amazonaws.com/send_to_ifttt.py
 soracom-files.s3.amazonaws.com (soracom-files.s3.amazonaws.com) をDNSに問いあわせています...<br>
@@ -771,7 +780,7 @@ status changed to 'in' : {"value3": "", "value2": "5", "value1": "in"}
 - Beam 経由でデータを送信します
 status changed to 'out' : {"value3": "", "value2": "9", "value1": "out"}
 <Response [200]> ← 正常にデータが送信されたら 200 になります
-
+```
 
 すると、下記のようなツイートが行われます。
 ![](image/7-10.png)
